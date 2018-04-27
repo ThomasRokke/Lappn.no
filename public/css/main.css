@@ -1,0 +1,236 @@
+.carousel{
+    max-height:350px;
+}
+
+.container{
+    overflow:hidden;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.icon-block h2 i{
+    font-size:2em;
+}
+
+.icon-block h5{
+    font-size:1.6em;
+}
+
+.button-collapse{
+    position: fixed;
+    top:0;
+    left:0;
+
+}
+
+
+.more-info-top-margin{
+    margin-top:50px;
+}
+
+.label-margin-minus-top{
+    margin-top: -25px;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("https://images.unsplash.com/photo-1458917816469-9499c76688e0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=78299510abd786b8844daa9eab4bbfb4&auto=format&fit=crop&w=1951&q=80");
+
+    /* Set a specific height */
+    min-height: 100vh;
+    margin-top: -9vh;
+    width: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.brand-logo-full{
+    opacity: 1;
+    /* Firefox */
+    -moz-transition: all 500ms ease-in;
+    /* WebKit */
+    -webkit-transition: all 500ms ease-in;
+    /* Opera */
+    -o-transition: all 500ms ease-in;
+    /* Standard */
+    transition: all 500ms ease-in;
+    margin-left: 5px;
+}
+
+.brand-logo-zero{
+    opacity: 0;
+    /* Firefox */
+    -moz-transition: all 500ms ease-in;
+    /* WebKit */
+    -webkit-transition: all 500ms ease-in;
+    /* Opera */
+    -o-transition: all 500ms ease-in;
+    /* Standard */
+    transition: all 500ms ease-in;
+}
+
+.brand-logo{
+
+    font-family: 'Pacifico', cursive;
+    text-shadow: -3px 2px 5px rgba(150, 150, 150, 0.59);
+
+
+}
+
+.overlay-header-text{
+    margin-top: 15vh;
+    color: #fff;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+
+}
+.overlay-header-text h1{
+    font-size: 8em;
+}
+
+
+.buttons{
+    margin-top:17%;
+}
+
+.overlay-buttons a{
+   margin-left:10px;
+    margin-bottom: 20px;
+}
+
+.overlay-buttons .more{
+    background-color: transparent;
+    border: 2px solid #03a9f4;
+}
+
+
+.overlay-buttons a:hover{
+   background-color: rgba(3, 169, 244, 0.04);
+}
+
+
+.light-blue{
+
+    /* Firefox */
+    -moz-transition: all 500ms ease-in;
+    /* WebKit */
+    -webkit-transition: all 500ms ease-in;
+    /* Opera */
+    -o-transition: all 500ms ease-in;
+    /* Standard */
+    transition: all 500ms ease-in;
+}
+.transparent{
+    /* Firefox */
+    -moz-transition: all 500ms ease-in;
+    /* WebKit */
+    -webkit-transition: all 500ms ease-in;
+    /* Opera */
+    -o-transition: all 500ms ease-in;
+    /* Standard */
+    transition: all 500ms ease-in;
+}
+
+/*
+    Fullscreen background image
+*/
+
+.bg {
+    /* The image used */
+    background-image: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c2e086325efab49ac1c075b97afc495b&auto=format&fit=crop&w=1908&q=80");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.auth-content{
+    margin-top: 50px;
+    margin-bottom:100px;
+}
+
+/*
+    Login
+*/
+
+    .fb-login-icon{
+        font-size: 3.6em;
+        margin-top: -20px;
+        margin-right: 5px;
+    }
+
+    /*
+        Prevent line breaks
+    */
+    .nowrap{
+        white-space: nowrap;
+    }
+/*
+    End login
+*/
+
+@media screen and (max-width: 768px) {
+    .overlay-header-text h1{
+        font-size: 5.6em;
+    }
+
+
+    .buttons{
+        margin-top:60%;
+    }
+
+    .overlay-buttons .more{
+        background-color: rgba(3, 169, 244, 0.52);
+        border: 2px solid #03a9f4;
+    }
+}
+
+.collapsible{
+    margin-top: -30px;
+    box-shadow: none;
+    border: none;
+}
+
+.collapsible-header{
+    border:none;
+}
+.collapsible-header:focus{
+    outline:none !important;
+}
+
+.card-buttons .btn{
+
+
+}
+
+.container-padding{
+    margin:10px;
+}
+
+
+.sidenav{
+    z-index: 15;
+    padding-top: 50px;
+
+}
+
+.sidenav-overlay{
+    z-index: 14;
+}
+
+nav{
+    z-index: 11;
+}

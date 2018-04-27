@@ -1,0 +1,282 @@
+ <h4>{{(Auth::getUser())->hasAnyRole('User') ? 'as User' : 'Does not have user Role' }}</h4>
+                    You are logged in!
+                    <h4>{{(Auth::getUser())->dob}}</h4>
+
+
+                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+
+
+                                  <div class="input-field col s10 offset-s1">
+                                                            <input id="dob" type="number" class=" validate {{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required autofocus minlength="4" maxlength="4">
+                                                            <label for="password">{{ __('Hvilket år er du født?') }}</label>
+                                                            @if ($errors->has('dob'))
+                                                                <span class="invalid-feedback">
+                                                                        <strong>{{ $errors->first('dob') }}</strong>
+                                                                    </span>
+                                                            @endif
+                                                        </div>
+
+
+                                                        @if($dobSet === null)
+                                                                                <h1>Dob is set</h1>
+                                                                            @endif
+                                                                                @if($newsletterSet === null)
+                                                                                                                                                                          <h1>Newsletter is set</h1>
+                                                                                                                                                                      @endif@
+
+
+
+
+                                                  /*
+                                                      Title: Shoe webshop
+                                                      Description: A prototype of a webshop using only html, css and javascript
+                                                      Author: Thomas Røkke
+                                                      Date: 19.11.2017
+                                                  */
+                                                  (function() {
+
+
+                                                  // Creating questionss and answers
+                                                  //*****************************************************************************
+                                                       let question1 = {
+                                                          question: "Hvordan skal barn lavere enn 135 cm sikres i bilen?",
+                                                          answers: ["I baksetet med bare bilbelte","I tilpasset barnesikringsutstyr", "På fanget til en voksen", "I forsetet med bilbelte"],
+                                                          correct: 1
+                                                      };
+
+                                                       let question2 = {
+                                                          question: "Hvilket av disse krav stilles til øvingskjøring i klasse B?",
+                                                          answers: ['Ledsager må ha fullført eget kurs', 'Det kan ikke være med passasjerer', 'Den som øvingskjører må ha med gyldig legitimasjon', 'Det er ikke tillatt å øvingskjøre med tilhenger'],
+                                                          correct: 2
+                                                      };
+
+                                                       let question3 = {
+                                                          question: 'Hva er riktig om krav til lys bak på bilen?',
+                                                          answers: ['Ryggelys skal være røde', 'Det er ingen krav til bestemt farge', 'Baklys skal være røde', 'Baklys skal være hvite'],
+                                                          correct: 2
+                                                      };
+
+                                                       let question4 = {
+                                                          question: "Du skal svinge til venstre i et kryss. Hvilket møtende kjøretøy vil det være vanskeligst å vurdere avstanden til?",
+                                                          answers: ["Lastebil", "Letebil", "Motorsykkel", "Traktor"],
+                                                          correct: 2
+                                                      };
+
+                                                       let question5 = {
+                                                          question: "Hva sier trafikkreglene om høyeste tillatte fart etter at du har passert dette skiltet?",
+                                                          questionImg: 'https://www.vegvesen.no/_public/vegvesen.no/images/teoriprovedemo/skilt1.jpg?_ts=15f05c18328',
+
+                                                          answers: ["Gangfart", "20km/t", "50km/t", "20-30km/t"],
+                                                          correct: 0
+                                                      };
+
+                                                       let question6 = {
+                                                          question: "Hva betyr skiltet?",
+                                                          questionImg: 'https://www.vegvesen.no/_public/vegvesen.no/images/teoriprovedemo/skilt2.jpg?_ts=1578e8f1038',
+                                                          answers: ["Felt A er for buss i rute", "Felt B er felt for avkjøring", "Felt B er et forbikjøringsfelt", "Felt A er for lastebiler over 3500 kg" ],
+                                                          correct: 2
+                                                      };
+
+                                                       let question7 = {
+                                                          question: "Du kjører på landeveg. Hva er høyeste tillatte hastighet etter dette skiltet?",
+                                                          questionImg: 'https://www.vegvesen.no/_public/vegvesen.no/images/teoriprovedemo/skilt3.jpg?_ts=1578e8f1038',
+                                                          answers: ["60km/t", "70km/t", "80km/t", "90km/t"],
+                                                          correct: 2
+                                                      };
+
+                                                       let question8 = {
+                                                          question: "Du skal kjøre rett fram i lyskrysset. Lyssignalet blinker gult. Hva sier reglene om vikeplikt?",
+                                                          questionImg: 'https://www.vegvesen.no/_public/vegvesen.no/images/teoriprovedemo/lyskryss.jpg?_ts=15f05c18328',
+                                                          answers: ["Jeg har vikeplikt for kryssende trafikk", "Jeg har vikeplikt for trafikk fra høyre", "Jeg har vikeplikt for trafikk fra venstre", "Jeg har ikke vikeplikt"],
+                                                          correct: 1
+                                                      };
+
+                                                  // create an array of objects
+
+                                                       let questions = [question1, question2, question3, question4, question5, question6, question7, question8];
+
+
+                                                      let tags;
+                                                      let tagsClass = '';
+                                                      let liTagsid = [];
+                                                      let correctAns = 0;
+                                                      let quizPage = 1;
+
+
+                                                      let currentIndex = 0;
+                                                      let currentQuestion = questions[currentIndex];
+
+                                                      let prevousQuestion;
+                                                      let previousIndex = 0;
+
+                                                      let ulTag;
+                                                      let button;
+                                                      let questionTitle;
+                                                      let questionImg;
+
+                                                      let classHighlight = 'selected';
+
+
+
+                                                      //init function
+                                                      const init = function() {
+                                                          const setHTMLObjects = function() {
+
+                                                               ulTag = $('#answer');//document.getElementById('answer');
+                                                               button = $('#submit');//document.getElementById('submit');
+                                                               questionTitle = $('#question');// document.getElementById('question');
+                                                              questionImg = $('#questionImg');
+
+                                                          }(); //end setHTMLObjects
+                                                          //Set events
+                                                          let setEvents = function() {
+
+
+
+
+
+
+                                                          }(); //setEvents end
+
+                                                          initQuestions();
+
+
+
+
+                                                      }(); //end init
+                                                      //application logic
+
+
+                                                      function test(){
+                                                          alert("test is pressed");
+                                                      }
+
+                                                      function initQuestions(){
+                                                          if (currentIndex !== 0) {
+                                                              // create again submit button only for next pages
+                                                              button = $('#submit');
+                                                              ulTag.text('');
+                                                              button.text('Svar');
+                                                              button.addClass('submit');
+                                                              button.attr('id', 'submit');
+
+                                                              //update the number of questions displayed
+                                                              $('#quizNumber').html(quizPage);
+                                                          }
+
+                                                          //Display Results in the final page
+                                                          if (currentIndex ===  (questions.length)) {
+                                                              ulTag.html('');
+                                                              $('#question').html('');
+
+                                                              showResults();
+
+                                                              return
+                                                          }
+
+                                                          questionTitle.html(currentQuestion.question);
+                                                          if(currentQuestion.hasOwnProperty('questionImg')){
+                                                              console.log("img");
+                                                              questionImg.attr("src",currentQuestion.questionImg);
+                                                              questionImg.show();
+                                                          }else{
+                                                              questionImg.hide();
+                                                          }
+
+                                                          console.log(currentQuestion.question);
+
+                                                          $('#answer').html(""); // flush it
+                                                          // create a for loop to generate the answers and display them in the page
+                                                          for ( let i = 0; i < currentQuestion.answers.length; i++) {
+
+                                                              $('#answer').append("<li id='"+'ans'+(i+1)+"' class='notSelected'>"+currentQuestion.answers[i]+"</li>");
+
+                                                          }
+
+                                                          //.click() will return the result of $('.notSelected')
+                                                           let $liTags = $('.notSelected').click(function(list) {
+                                                              list.preventDefault();
+                                                              //run removeClass on every element
+                                                              //if the elements are not static, you might want to rerun $('.notSelected')
+                                                              //instead of the saved $litTags
+                                                              $liTags.removeClass(classHighlight);
+                                                              //add the class to the currently clicked element (this)
+                                                              $(this).addClass(classHighlight);
+
+                                                              //get id name of clicked answer
+                                                              for ( let i = 0; i < currentQuestion.answers.length ; i++) {
+                                                                  console.log("run");
+                                                                  // console.log(liTagsid[i]);
+                                                                  if($liTags[i].className === "notSelected selected"){
+                                                                      //store information to check answer
+                                                                      tags = $liTags[i];
+                                                                      // tagsClass = $LiTags.className;
+                                                                      console.log(tags);
+                                                                      tagsClassName = $liTags[i];
+                                                                  }
+                                                              }
+                                                          });
+                                                          $('#submit').click(checkAnswer);
+                                                      }
+
+                                                      function checkAnswer (){
+
+
+
+                                                          // get selected list
+                                                           let selectedItem = tags;
+
+                                                          // check that an answer has been selected
+                                                          if (selectedItem === undefined) {
+                                                              alert("Vennligst velg et alternativ!")
+
+                                                          } else {
+                                                              var userAns = selectedItem.innerHTML;
+                                                          }
+
+                                                          // change the background of the answer according to the Results
+                                                          if (userAns === currentQuestion.answers[currentQuestion.correct]) {
+                                                              console.log("Korrekt! Svaret er: "+ userAns);
+                                                              // change color of selected item by changing className
+                                                              selectedItem.className = 'correct';
+                                                              // count the number of correct answers
+                                                              correctAns++;
+                                                              console.log(correctAns);
+                                                          } else {
+                                                              console.log("Dessverre! Riktig s let er: "+  currentQuestion.answers[currentQuestion.correct]);
+                                                              //change the background of the wrong answer
+                                                              selectedItem.className = 'wrong';
+                                                              //hightlight the right answer if the user got it wrong
+                                                              //change the class name of the correct answer
+                                                              let currentIndex = currentQuestion.correct;
+                                                              $( "#answer li:eq("+currentIndex+")").addClass('correct');
+                                                              //ulTag.getElementsByTagName('li')[currentQuestion.correct].className = 'correct';
+
+                                                              console.log(currentQuestion.answers[currentQuestion.correct]);
+                                                          }
+
+                                                          // Create a next Question button once the answer has been submitted
+                                                          button.text('Neste');
+                                                          button.addClass('next');
+                                                          button.attr('id', 'next');
+
+                                                          prevousQuestion = currentQuestion;
+                                                          quizPage++;
+                                                          currentIndex++;
+                                                          currentQuestion = questions[currentIndex];
+
+
+                                                          // Start with the next question once the "Next" button has been clicked
+                                                          $('#next').click(initQuestions);
+
+                                                      }
+
+
+
+
+
+
+
+                                                  }()); //end encapsulation
